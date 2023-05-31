@@ -3,6 +3,7 @@ package com.dasktelor.simplehabittracker.ui;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
@@ -35,21 +36,25 @@ public class HabitsAdapter extends RecyclerView.Adapter<HabitsAdapter.ViewHolder
 
         ViewHolder holder = new ViewHolder(binding);
 
-        holder.binding.buttonPlus.setOnClickListener(new View.OnClickListener() {
+        Button buttonPlus = holder.binding.buttonPlus;
+        Button buttonMinus = holder.binding.buttonPlus;
+        Button buttonDelete = holder.binding.buttonPlus;
+
+        buttonPlus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mListener.onPlusClick(mHabits.get(holder.getAdapterPosition()));
             }
         });
 
-        holder.binding.buttonMinus.setOnClickListener(new View.OnClickListener() {
+        buttonMinus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mListener.onMinusClick(mHabits.get(holder.getAdapterPosition()));
             }
         });
 
-        holder.binding.buttonDelete.setOnClickListener(new View.OnClickListener() {
+        buttonDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mListener.onDeleteClick(mHabits.get(holder.getAdapterPosition()));
