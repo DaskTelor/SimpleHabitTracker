@@ -37,8 +37,8 @@ public class HabitsAdapter extends RecyclerView.Adapter<HabitsAdapter.ViewHolder
         ViewHolder holder = new ViewHolder(binding);
 
         Button buttonPlus = holder.binding.buttonPlus;
-        Button buttonMinus = holder.binding.buttonPlus;
-        Button buttonDelete = holder.binding.buttonPlus;
+        Button buttonMinus = holder.binding.buttonMinus;
+        Button buttonDelete = holder.binding.buttonDelete;
 
         buttonPlus.setOnClickListener(new View.OnClickListener() {
             @Override

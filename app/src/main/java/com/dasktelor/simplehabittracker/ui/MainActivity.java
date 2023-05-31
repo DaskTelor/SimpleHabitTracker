@@ -30,18 +30,31 @@ public class MainActivity extends AppCompatActivity {
 
         mViewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
 
-        //start
         HabitsAdapter habitsAdapter = new HabitsAdapter(this, new HabitItemListener() {
             @Override
             public void onPlusClick(Habit habit) {
-                habit.repeats++;
-                mViewModel.updateHabit(habit);
+
+                Habit updateHabit = new Habit();
+
+                updateHabit.repeats = habit.repeats + 1;
+                updateHabit.name = habit.name;
+                updateHabit.id = habit.id;
+
+                mViewModel.updateHabit(updateHabit);
             }
 
             @Override
             public void onMinusClick(Habit habit) {
-                habit.repeats--;
-                mViewModel.updateHabit(habit);
+                if(habit.repeats == 0)
+                    return;
+
+                Habit updateHabit = new Habit();
+
+                updateHabit.repeats = habit.repeats - 1;
+                updateHabit.name = habit.name;
+                updateHabit.id = habit.id;
+
+                mViewModel.updateHabit(updateHabit);
             }
 
             @Override
@@ -49,7 +62,6 @@ public class MainActivity extends AppCompatActivity {
                 mViewModel.deleteHabit(habit);
             }
         });
-        //end
 
         mBinding.listHabits.setLayoutManager(new LinearLayoutManager(this));
         mBinding.listHabits.setAdapter(habitsAdapter);
@@ -59,7 +71,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onChanged(List<Habit> habits) {
                 habitsAdapter.setData(habits);
-                habitsAdapter.notifyDataSetChanged();
             }
         });
 

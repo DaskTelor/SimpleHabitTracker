@@ -1,5 +1,7 @@
 package com.dasktelor.simplehabittracker.ui;
 
+import android.util.Log;
+
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.DiffUtil;
 
@@ -34,6 +36,7 @@ public class HabitsDiffCallback extends DiffUtil.Callback {
         final Habit oldHabit = mOldHabitsList.get(oldItemPosition);
         final Habit newHabit = mNewHabitsList.get(newItemPosition);
 
+        Log.d("HabitsDiffCallback", oldHabit.repeats + "" + newHabit.repeats);
         return oldHabit.name.equals(newHabit.name) && oldHabit.repeats == newHabit.repeats;
     }
 }
